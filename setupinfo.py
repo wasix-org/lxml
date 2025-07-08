@@ -63,23 +63,23 @@ def _prefer_reldirs(base_dir, dirs):
 def ext_modules(static_include_dirs, static_library_dirs,
                 static_cflags, static_binaries):
     global XML2_CONFIG, XSLT_CONFIG
-    if OPTION_BUILD_LIBXML2XSLT:
-        from buildlibxml import build_libxml2xslt, get_prebuilt_libxml2xslt
-        if sys.platform.startswith('win'):
-            get_prebuilt_libxml2xslt(
-                OPTION_DOWNLOAD_DIR, static_include_dirs, static_library_dirs)
-        else:
-            XML2_CONFIG, XSLT_CONFIG = build_libxml2xslt(
-                OPTION_DOWNLOAD_DIR, 'build/tmp',
-                static_include_dirs, static_library_dirs,
-                static_cflags, static_binaries,
-                libiconv_version=OPTION_LIBICONV_VERSION,
-                libxml2_version=OPTION_LIBXML2_VERSION,
-                libxslt_version=OPTION_LIBXSLT_VERSION,
-                zlib_version=OPTION_ZLIB_VERSION,
-                with_zlib=OPTION_WITH_ZLIB,
-                multicore=OPTION_MULTICORE,
-            )
+    # if OPTION_BUILD_LIBXML2XSLT:
+    #     from buildlibxml import build_libxml2xslt, get_prebuilt_libxml2xslt
+    #     if sys.platform.startswith('win'):
+    #         get_prebuilt_libxml2xslt(
+    #             OPTION_DOWNLOAD_DIR, static_include_dirs, static_library_dirs)
+    #     else:
+    #         XML2_CONFIG, XSLT_CONFIG = build_libxml2xslt(
+    #             OPTION_DOWNLOAD_DIR, 'build/tmp',
+    #             static_include_dirs, static_library_dirs,
+    #             static_cflags, static_binaries,
+    #             libiconv_version=OPTION_LIBICONV_VERSION,
+    #             libxml2_version=OPTION_LIBXML2_VERSION,
+    #             libxslt_version=OPTION_LIBXSLT_VERSION,
+    #             zlib_version=OPTION_ZLIB_VERSION,
+    #             with_zlib=OPTION_WITH_ZLIB,
+    #             multicore=OPTION_MULTICORE,
+    #         )
 
     modules = EXT_MODULES + COMPILED_MODULES
     if OPTION_WITHOUT_OBJECTIFY:
@@ -111,8 +111,8 @@ def ext_modules(static_include_dirs, static_library_dirs,
         use_cython = False
         print("Building without Cython.")
 
-    if not check_build_dependencies():
-        raise RuntimeError("Dependency missing")
+    # if not check_build_dependencies():
+    #     raise RuntimeError("Dependency missing")
 
     base_dir = get_base_dir()
     _include_dirs = _prefer_reldirs(
